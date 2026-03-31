@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+        <div class="card feature-card">
+            <div class="card-body p-5">
+                <div class="text-danger mb-4">
+                    <i class="fas fa-exclamation-triangle fa-4x"></i>
+                </div>
+                
+                <h2 class="text-danger mb-3">Oops! Something went wrong</h2>
+                
+                <div class="alert alert-danger text-start">
+                    <strong>Error Details:</strong><br>
+                    {{ error }}
+                </div>
+                
+                <div class="mt-4">
+                    <a href="/" class="btn btn-gradient btn-lg me-3">
+                        <i class="fas fa-home me-2"></i>Go Home
+                    </a>
+                    <button class="btn btn-outline-secondary btn-lg" onclick="history.back()">
+                        <i class="fas fa-arrow-left me-2"></i>Go Back
+                    </button>
+                </div>
+                
+                <div class="mt-4 text-muted">
+                    <small>
+                        <i class="fas fa-info-circle me-1"></i>
+                        If this error persists, please check that all model files are properly loaded.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Flask
+instance/
+.webassets-cache
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local development
+.env
+.flaskenv
+
+# Large files (required for GitHub)
+*.csv
+*.xlsx
+*.json
+!model_metadata.json
+!fe_outcomes2.csv
+
+# Large model files (too big for GitHub)
+models/*.pkl
+models/*.joblib
+
+# But keep the models directory structure
+!models/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp

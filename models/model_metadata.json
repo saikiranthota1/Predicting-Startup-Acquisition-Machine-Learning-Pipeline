@@ -1,0 +1,426 @@
+{
+  "feature_schema": {
+    "feature_names": [
+      "founded_at",
+      "first_funding_at",
+      "last_funding_at",
+      "funding_rounds",
+      "funding_total_usd",
+      "first_milestone_at",
+      "last_milestone_at",
+      "milestones",
+      "relationships",
+      "lat",
+      "lng",
+      "founded_at_year",
+      "first_funding_at_year",
+      "closed_at_year",
+      "last_funding_at_year",
+      "first_milestone_at_year",
+      "last_milestone_at_year",
+      "category_code_reduced_Other",
+      "category_code_reduced_advertising",
+      "category_code_reduced_biotech",
+      "category_code_reduced_consulting",
+      "category_code_reduced_ecommerce",
+      "category_code_reduced_enterprise",
+      "category_code_reduced_games_video",
+      "category_code_reduced_mobile",
+      "category_code_reduced_other",
+      "category_code_reduced_software",
+      "category_code_reduced_web",
+      "country_code_reduced_AUS",
+      "country_code_reduced_CAN",
+      "country_code_reduced_DEU",
+      "country_code_reduced_ESP",
+      "country_code_reduced_FRA",
+      "country_code_reduced_GBR",
+      "country_code_reduced_IND",
+      "country_code_reduced_ISR",
+      "country_code_reduced_NLD",
+      "country_code_reduced_Other",
+      "country_code_reduced_USA",
+      "isClosed",
+      "active_days",
+      "log_funding",
+      "funding_std",
+      "relationships_log",
+      "funding_total_usd_log",
+      "milestones_log",
+      "funding_rounds_log",
+      "funding_total_usd^2",
+      "funding_total_usd relationships",
+      "relationships^2",
+      "founded_year",
+      "founded_year_std",
+      "founded_year_maxabs",
+      "PC1",
+      "PC2"
+    ],
+    "feature_types": {
+      "founded_at": "float64",
+      "first_funding_at": "float64",
+      "last_funding_at": "float64",
+      "funding_rounds": "float64",
+      "funding_total_usd": "float64",
+      "first_milestone_at": "float64",
+      "last_milestone_at": "float64",
+      "milestones": "float64",
+      "relationships": "float64",
+      "lat": "float64",
+      "lng": "float64",
+      "founded_at_year": "float64",
+      "first_funding_at_year": "float64",
+      "closed_at_year": "float64",
+      "last_funding_at_year": "float64",
+      "first_milestone_at_year": "float64",
+      "last_milestone_at_year": "float64",
+      "category_code_reduced_Other": "bool",
+      "category_code_reduced_advertising": "bool",
+      "category_code_reduced_biotech": "bool",
+      "category_code_reduced_consulting": "bool",
+      "category_code_reduced_ecommerce": "bool",
+      "category_code_reduced_enterprise": "bool",
+      "category_code_reduced_games_video": "bool",
+      "category_code_reduced_mobile": "bool",
+      "category_code_reduced_other": "bool",
+      "category_code_reduced_software": "bool",
+      "category_code_reduced_web": "bool",
+      "country_code_reduced_AUS": "bool",
+      "country_code_reduced_CAN": "bool",
+      "country_code_reduced_DEU": "bool",
+      "country_code_reduced_ESP": "bool",
+      "country_code_reduced_FRA": "bool",
+      "country_code_reduced_GBR": "bool",
+      "country_code_reduced_IND": "bool",
+      "country_code_reduced_ISR": "bool",
+      "country_code_reduced_NLD": "bool",
+      "country_code_reduced_Other": "bool",
+      "country_code_reduced_USA": "bool",
+      "isClosed": "float64",
+      "active_days": "float64",
+      "log_funding": "float64",
+      "funding_std": "float64",
+      "relationships_log": "float64",
+      "funding_total_usd_log": "float64",
+      "milestones_log": "float64",
+      "funding_rounds_log": "float64",
+      "funding_total_usd^2": "float64",
+      "funding_total_usd relationships": "float64",
+      "relationships^2": "float64",
+      "founded_year": "float64",
+      "founded_year_std": "float64",
+      "founded_year_maxabs": "float64",
+      "PC1": "float64",
+      "PC2": "float64"
+    },
+    "sample_values": {
+      "founded_at": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5872833781411431
+      },
+      "first_funding_at": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.883071736100886
+      },
+      "last_funding_at": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8985833855225634
+      },
+      "funding_rounds": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.06860974549346176
+      },
+      "funding_total_usd": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.08432890295720734
+      },
+      "first_milestone_at": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.7913695846596606
+      },
+      "last_milestone_at": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8110652106532518
+      },
+      "milestones": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.032245298373521504
+      },
+      "relationships": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0020365607177084684
+      },
+      "lat": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.685940684847078
+      },
+      "lng": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.32917572655870103
+      },
+      "founded_at_year": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9249843066189221
+      },
+      "first_funding_at_year": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9835539039837755
+      },
+      "closed_at_year": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9163071469181633
+      },
+      "last_funding_at_year": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9869408671256656
+      },
+      "first_milestone_at_year": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9379312843494644
+      },
+      "last_milestone_at_year": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9522077175667354
+      },
+      "category_code_reduced_Other": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.23940670880572557
+      },
+      "category_code_reduced_advertising": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.059780609344169094
+      },
+      "category_code_reduced_biotech": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.03354402862780509
+      },
+      "category_code_reduced_consulting": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.046453295876392096
+      },
+      "category_code_reduced_ecommerce": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.08078325139627437
+      },
+      "category_code_reduced_enterprise": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.04133641015350657
+      },
+      "category_code_reduced_games_video": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.04662051436406809
+      },
+      "category_code_reduced_mobile": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.06183739674258386
+      },
+      "category_code_reduced_other": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.07859268920771881
+      },
+      "category_code_reduced_software": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.18203404568409084
+      },
+      "category_code_reduced_web": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.12961104979766563
+      },
+      "country_code_reduced_AUS": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.01712317313802214
+      },
+      "country_code_reduced_CAN": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.04347680679575934
+      },
+      "country_code_reduced_DEU": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.022674826928865254
+      },
+      "country_code_reduced_ESP": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.014715226915487776
+      },
+      "country_code_reduced_FRA": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.02046754289154209
+      },
+      "country_code_reduced_GBR": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.08230493963412595
+      },
+      "country_code_reduced_IND": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.049797665629912044
+      },
+      "country_code_reduced_ISR": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.012775492458446206
+      },
+      "country_code_reduced_NLD": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.010919367245242634
+      },
+      "country_code_reduced_Other": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.16143272800240793
+      },
+      "country_code_reduced_USA": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.5643122303601886
+      },
+      "isClosed": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.9163071469181633
+      },
+      "active_days": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.8716987891578385
+      },
+      "log_funding": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.7445448815617206
+      },
+      "funding_std": {
+        "min": -0.6866093447282018,
+        "max": 7.45543117341563,
+        "mean": 3.849634567176223e-17
+      },
+      "relationships_log": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.08774982378882137
+      },
+      "funding_total_usd_log": {
+        "min": 0.0,
+        "max": 1.0000000000000002,
+        "mean": 0.7445448815617207
+      },
+      "milestones_log": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.052218107955208315
+      },
+      "funding_rounds_log": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.07501723819023469
+      },
+      "funding_total_usd^2": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.02219595286402867
+      },
+      "funding_total_usd relationships": {
+        "min": 0.0,
+        "max": 0.7556012187349807,
+        "mean": 0.0002794974054246329
+      },
+      "relationships^2": {
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 9.522956524365771e-05
+      },
+      "founded_year": {
+        "min": 1970.0,
+        "max": 1970.0,
+        "mean": 1970.0
+      },
+      "founded_year_std": {
+        "min": 0.0,
+        "max": 0.0,
+        "mean": 0.0
+      },
+      "founded_year_maxabs": {
+        "min": 1.0,
+        "max": 1.0,
+        "mean": 1.0
+      },
+      "PC1": {
+        "min": -6.076348298931519,
+        "max": -6.071744669425962,
+        "mean": -6.07549382805032
+      },
+      "PC2": {
+        "min": -0.8092282949486628,
+        "max": 7.747537836464862,
+        "mean": 8.056939158891973e-08
+      }
+    }
+  },
+  "model_info": {
+    "binary_model": {
+      "type": "Binary Classification",
+      "classes": [
+        0,
+        1
+      ],
+      "class_labels": {
+        "0": "Not Status 3",
+        "1": "Status 3"
+      }
+    },
+    "multiclass_model": {
+      "type": "Multiclass Classification",
+      "classes": [
+        1,
+        2,
+        3
+      ],
+      "class_labels": {
+        "1": "Status 1",
+        "2": "Status 2",
+        "3": "Status 3"
+      }
+    }
+  },
+  "preprocessing_info": {
+    "datetime_handling": "Converted to Unix timestamp",
+    "categorical_handling": "Label encoding",
+    "scaling": "StandardScaler applied"
+  }
+}

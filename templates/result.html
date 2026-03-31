@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center mb-4">
+        <h2>
+            <i class="fas fa-trophy text-warning me-2"></i>
+            Startup Exit Prediction
+        </h2>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Result Card -->
+        <div class="result-card" style="background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); color: #4a5568;">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h3 class="mb-3" style="color: #4a5568;">
+                        {% if result.model_type == 'binary' %}
+                            <i class="fas fa-target me-2"></i>Exit Success Analysis
+                        {% else %}
+                            <i class="fas fa-rocket me-2"></i>Growth Stage Analysis
+                        {% endif %}
+                    </h3>
+                    
+                    <div class="mb-3">
+                        <h4 class="mb-2">Prediction:</h4>
+                        <div class="d-flex align-items-center">
+                            {% if result.model_type == 'binary' %}
+                                {% if result.prediction == 1 %}
+                                    <span class="badge bg-success fs-5 me-3">
+                                        <i class="fas fa-rocket me-1"></i>SUCCESS
+                                    </span>
+                                    <span class="fs-5">High Exit Potential (IPO/Acquisition Ready)</span>
+                                {% else %}
+                                    <span class="badge bg-warning fs-5 me-3">
+                                        <i class="fas fa-chart-line me-1"></i>GROWTH
+                                    </span>
+                                    <span class="fs-5">Needs Further Development</span>
+                                {% endif %}
+                            {% else %}
+                                {% if result.prediction == 1 %}
+                                    <span class="badge bg-info fs-5 me-3">
+                                        <i class="fas fa-seedling me-1"></i>STAGE 1
+                                    </span>
+                                    <span class="fs-5">Early Stage Startup</span>
+                                {% elif result.prediction == 2 %}
+                                    <span class="badge bg-primary fs-5 me-3">
+                                        <i class="fas fa-chart-line me-1"></i>STAGE 2
+                                    </span>
+                                    <span class="fs-5">Growth Stage Company</span>
+                                {% else %}
+                                    <span class="badge bg-success fs-5 me-3">
+                                        <i class="fas fa-crown me-1"></i>STAGE 3
+                                    </span>
+                                    <span class="fs-5">Exit-Ready Unicorn</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h5 style="color: #4a5568;">Confidence: {{ "%.1f"|format(result.confidence * 100) }}%</h5>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" data-width="{{ result.confidence * 100 }}"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <h5 class="mb-3" style="color: #4a5568;">Class Probabilities:</h5>
+                    {% for class_name, prob in result.probabilities.items() %}
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>{{ class_name.replace('_', ' ').title() }}</span>
+                                <strong>{{ "%.3f"|format(prob) }}</strong>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar" role="progressbar" 
+                                     data-width="{{ prob * 100 }}" style="background: rgba(255,255,255,0.8);"
+                                     aria-valuenow="{{ prob * 100 }}" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Explanation -->
+        <div class="card feature-card mt-4" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border: 2px solid #e2e8f0;">
+            <div class="card-header" style="background: transparent; border-bottom: 2px solid #cbd5e0;">
+                <h5 class="mb-0" style="color: #2d3748;">
+                    <i class="fas fa-info-circle me-2 text-primary"></i>Understanding Your Prediction
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if result.model_type == 'binary' %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="text-primary mb-3"><i class="fas fa-target me-2"></i>Binary Exit Analysis</h6>
+                            <p class="mb-3">This model predicts whether your startup is ready for a major exit event:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="explanation-box success-box p-3 rounded mb-3">
+                                        <h6><i class="fas fa-rocket me-2"></i>SUCCESS (Exit-Ready)</h6>
+                                        <small>High potential for IPO or acquisition. Company shows strong metrics and market position for a successful exit.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="explanation-box warning-box p-3 rounded mb-3">
+                                        <h6><i class="fas fa-chart-line me-2"></i>GROWTH (Development Phase)</h6>
+                                        <small>Company needs further development before major exit. Focus on scaling and improving key metrics.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="text-primary mb-3"><i class="fas fa-rocket me-2"></i>Growth Stage Classification</h6>
+                            <p class="mb-3">This model identifies the specific development stage of your startup:</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="explanation-box stage1-box p-3 rounded mb-3">
+                                        <h6><i class="fas fa-seedling me-2"></i>Stage 1: Early Stage</h6>
+                                        <small><strong>2,583 companies</strong> in dataset. New startups focusing on product development and initial market entry. Typically seeking seed funding.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="explanation-box stage2-box p-3 rounded mb-3">
+                                        <h6><i class="fas fa-chart-line me-2"></i>Stage 2: Growth Stage</h6>
+                                        <small><strong>1,134 companies</strong> in dataset. Established companies with proven business models, scaling operations and expanding market presence.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="explanation-box stage3-box p-3 rounded mb-3">
+                                        <h6><i class="fas fa-crown me-2"></i>Stage 3: Exit-Ready</h6>
+                                        <small><strong>192,813 companies</strong> in dataset. Mature companies ready for major exit events, IPO candidates or acquisition targets.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <div class="mt-4 pt-3" style="border-top: 1px solid #cbd5e0;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-secondary mb-2"><i class="fas fa-chart-bar me-2"></i>Model Performance</h6>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-check text-success me-2"></i>Binary Model: <strong>97.8% accuracy</strong></li>
+                                <li><i class="fas fa-check text-success me-2"></i>Multiclass Model: <strong>97.7% accuracy</strong></li>
+                                <li><i class="fas fa-database text-info me-2"></i>Trained on <strong>196,530</strong> startup companies</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-secondary mb-2"><i class="fas fa-lightbulb me-2"></i>Key Features Analyzed</h6>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-map-marker-alt text-primary me-2"></i>Geographic location & market</li>
+                                <li><i class="fas fa-money-bill-wave text-success me-2"></i>Investment & funding timeline</li>
+                                <li><i class="fas fa-trophy text-warning me-2"></i>Milestone achievements</li>
+                                <li><i class="fas fa-calendar text-info me-2"></i>Company age & founding date</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Data Summary -->
+        {% if input_data %}
+        <div class="card feature-card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-database me-2"></i>Input Data Summary
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for key, value in input_data.items() %}
+                        {% if key != 'task_type' %}
+                            <div class="col-md-6 col-lg-4 mb-2">
+                                <strong>{{ key.replace('_', ' ').title() }}:</strong>
+                                <span class="text-muted">{{ value }}</span>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Action Buttons -->
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-startup btn-lg me-3">
+                <i class="fas fa-plus me-2"></i>Analyze Another Startup
+            </a>
+            <button class="btn btn-growth btn-lg me-3" onclick="window.print()">
+                <i class="fas fa-download me-2"></i>Export Report
+            </button>
+            <button class="btn btn-outline-light btn-lg" onclick="shareResult()">
+                <i class="fas fa-share-alt me-2"></i>Share Analysis
+            </button>
+        </div>
+
+        <!-- API Response (for developers) -->
+        <div class="card feature-card mt-4" style="background: linear-gradient(145deg, #1e293b, #334155); color: white;">
+            <div class="card-header" style="background: transparent; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <h6 class="mb-0 text-white">
+                    <i class="fas fa-code me-2"></i>Developer API Response
+                    <small class="text-light opacity-75">(for system integration)</small>
+                </h6>
+            </div>
+            <div class="card-body">
+                <pre class="p-3 rounded" style="background: rgba(0,0,0,0.3); color: #10b981; font-family: 'Courier New', monospace;"><code>{{ result | tojson(indent=2) }}</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function shareResult() {
+    const resultText = `StartupPredict AI Analysis:\n{% if result.model_type == 'binary' %}Exit Prediction: {{ "Success" if result.prediction == 1 else "Growth Needed" }}{% else %}Growth Stage: {{ "Early" if result.prediction == 1 else "Growth" if result.prediction == 2 else "Exit-Ready" }}{% endif %}\nConfidence: {{ "%.1f"|format(result.confidence * 100) }}%\nAnalyze your startup: ${window.location.origin}`;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'StartupPredict AI Analysis',
+            text: resultText,
+            url: window.location.origin
+        });
+    } else {
+        navigator.clipboard.writeText(resultText).then(() => {
+            alert('Analysis copied to clipboard!');
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate confidence bar
+    const confidenceFill = document.querySelector('.confidence-fill');
+    if (confidenceFill) {
+        const targetWidth = confidenceFill.getAttribute('data-width');
+        confidenceFill.style.width = '0%';
+        setTimeout(() => {
+            confidenceFill.style.width = targetWidth + '%';
+        }, 500);
+    }
+    
+    // Animate progress bars
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach((bar, index) => {
+        const targetWidth = bar.getAttribute('data-width');
+        bar.style.width = '0%';
+        setTimeout(() => {
+            bar.style.width = targetWidth + '%';
+        }, 700 + (index * 100));
+    });
+    
+    // Add copy to clipboard for JSON
+    const codeBlock = document.querySelector('pre code');
+    if (codeBlock) {
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'btn btn-sm btn-outline-secondary position-absolute';
+        copyBtn.style.top = '10px';
+        copyBtn.style.right = '10px';
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+        copyBtn.title = 'Copy JSON to clipboard';
+        
+        const preElement = codeBlock.parentElement;
+        preElement.style.position = 'relative';
+        preElement.appendChild(copyBtn);
+        
+        copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                copyBtn.innerHTML = '<i class="fas fa-check text-success"></i>';
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                }, 2000);
+            });
+        });
+    }
+});
+</script>
+{% endblock %}
